@@ -42,3 +42,8 @@ nest-cli.json
 tsconfig.build.json
 tsconfig.json
 yarn.lock
+
+# ignore test files and directories
+*.spec.ts
+*.e2e-spec.ts
+/test/
