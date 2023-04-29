@@ -16,12 +16,9 @@ describe('AppController', () => {
 
   describe('root', () => {
     it('should return "Your code hit the service."', () => {
-      const res = {
-        render: jest.fn(() => 'Your code hit the service.'),
-      } as any;
-      const result = appController.root(res);
+      const result = appController.root();
       expect(result).toBeDefined();
-      expect(result).toBe('Your code hit the service.');
+      expect(result.message).toBe('Your code hit the service.');
     });
   });
 });
