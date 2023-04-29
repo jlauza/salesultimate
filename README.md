@@ -1,2 +1,2 @@
-# mvc-jsapp
+# MVC Nest app
 A NestJS app.
