@@ -15,8 +15,13 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.root).toBe('Hello World!');
+    it('should return "Your code hit the service."', () => {
+      const res = {
+        render: jest.fn(() => 'Your code hit the service.'),
+      } as any;
+      const result = appController.root(res);
+      expect(result).toBeDefined();
+      expect(result).toBe('Your code hit the service.');
     });
   });
 });
