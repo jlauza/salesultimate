@@ -21,6 +21,9 @@ async function bootstrap() {
     },
     templates: join(__dirname, '..', 'views'),
   });
-  await app.listen(3000);
+  await app.listen(
+    3000,
+    // If you want to accept connections on other hosts, you should specify '0.0.0.0'
+  );
 }
 bootstrap();
