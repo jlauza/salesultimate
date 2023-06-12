@@ -35,7 +35,7 @@ RUN if [ $yarn_installed -eq 1 ]; then \
         npm install; \
     fi
     
-CMD [ "npm", "start:dev", "--watch" ]
+CMD [ "npm", "start", "--watch" ]
 
 # Production stage
 FROM node:16.18.0-alpine
