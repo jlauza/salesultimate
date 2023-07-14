@@ -13,7 +13,7 @@ import { ConfigModule } from "@nestjs/config";
     ConfigModule.forRoot({
       isGlobal: true, // this makes the config module available globally
     }),
-    // AuthModule,
+    AuthModule,
     UsersModule,
   ],
   controllers: [
