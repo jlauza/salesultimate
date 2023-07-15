@@ -8,9 +8,10 @@ export class UsersService {
   constructor(@InjectModel("user") private readonly userModel: Model<User>) {}
 
   async insertUser(userName: string, password: string) {
-    const username = userName.toLowerCase();
+    // const username = userName.toLowerCase();
     const newUser = new this.userModel({
-      username,
+      // username,
+      username: userName,
       password,
     });
 
@@ -19,8 +20,8 @@ export class UsersService {
   }
 
   async getUser(userName: string) {
-    const username = userName.toLowerCase();
-    const user = await this.userModel.findOne({ username });
+    // const username = userName.toLowerCase();
+    const user = await this.userModel.findOne({ username: userName });
     return user;
   }
 }
