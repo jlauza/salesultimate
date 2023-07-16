@@ -1,6 +1,14 @@
-import { Controller, Body, Post, Request } from "@nestjs/common";
+import {
+  Controller,
+  Body,
+  Post,
+  Request,
+  UseGuards,
+  Get,
+} from "@nestjs/common";
 import { UsersService } from "./users.service";
 import * as bcrypt from "bcrypt";
+import { LocalAuthGuard } from "src/auth/local.auth.guard";
 
 @Controller("users")
 export class UsersController {
@@ -22,8 +30,14 @@ export class UsersController {
     };
   }
 
+  @UseGuards(LocalAuthGuard)
   @Post("/login")
   login(@Request() req): any {
     return { User: req.user, msg: "User logged in successfully" };
+  }
+
+  @Get("/protected")
+  getHello(@Request() req): string {
+    return req.user;
   }
 }

@@ -31,10 +31,13 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/platform-fastify": "^9.4.0",
     "@types/bcrypt": "^5.0.0",
+    "@types/express-session": "^1.17.7",
     "bcrypt": "^5.1.0",
+    "express-session": "^1.17.3",
     "handlebars": "^4.7.7",
     "hbs": "^4.2.0",
     "mongoose": "^7.2.2",
+    "passport": "^0.6.0",
     "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"

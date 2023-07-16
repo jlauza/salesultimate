@@ -7,6 +7,8 @@ import { AppModule } from "./app.module";
 import { join } from "path";
 import { connectToDatabase } from "./mongodb";
 import { ConfigService } from "@nestjs/config";
+import * as session from "express-session";
+import * as passport from "passport";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -36,9 +38,22 @@ async function bootstrap() {
     },
     templates: join(__dirname, "..", "views"),
   });
+
+  app.use(
+    session({
+      secret: "keyboard cat",
+      resave: false,
+      saveUninitialized: false,
+    })
+  );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+
   await app.listen(
     3000
     // If you want to accept connections on other hosts, you should specify '0.0.0.0'
   );
 }
+
 bootstrap();
