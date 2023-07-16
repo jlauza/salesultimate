@@ -9,6 +9,7 @@ import {
 import { UsersService } from "./users.service";
 import * as bcrypt from "bcrypt";
 import { LocalAuthGuard } from "src/auth/local.auth.guard";
+import { AuthenticatedGuard } from "src/auth/authenticated.guard";
 
 @Controller("users")
 export class UsersController {
@@ -36,8 +37,15 @@ export class UsersController {
     return { User: req.user, msg: "User logged in successfully" };
   }
 
+  @UseGuards(AuthenticatedGuard)
   @Get("/protected")
   getHello(@Request() req): string {
     return req.user;
+  }
+
+  @Get("/logout")
+  logout(@Request() req): any {
+    req.session.destroy();
+    return { msg: "User logged out." };
   }
 }
