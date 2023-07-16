@@ -9,11 +9,12 @@ import { AuthGuard } from "./auth.guard";
 import { APP_GUARD } from "@nestjs/core";
 import { SetMetadata } from "@nestjs/common";
 import { PassportModule } from "@nestjs/passport";
+import { SessionSerializer } from "./session.serializer";
 
 Module({
   imports: [
     UsersModule,
-    PassportModule,
+    PassportModule.register({ session: true }),
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
@@ -23,6 +24,7 @@ Module({
   providers: [
     AuthService,
     LocalStrategy,
+    SessionSerializer,
     {
       provide: APP_GUARD,
       useClass: AuthGuard,
