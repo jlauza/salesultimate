@@ -8,10 +8,12 @@ import { JwtModule } from "@nestjs/jwt";
 import { AuthGuard } from "./auth.guard";
 import { APP_GUARD } from "@nestjs/core";
 import { SetMetadata } from "@nestjs/common";
+import { PassportModule } from "@nestjs/passport";
 
 Module({
   imports: [
     UsersModule,
+    PassportModule,
     JwtModule.register({
       global: true,
       secret: jwtConstants.secret,
@@ -21,10 +23,10 @@ Module({
   providers: [
     AuthService,
     LocalStrategy,
-    // {
-    //   provide: APP_GUARD,
-    //   useClass: AuthGuard,
-    // },
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
   ],
   controllers: [AuthController],
   exports: [AuthService],

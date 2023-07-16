@@ -1,4 +1,4 @@
-import { Controller, Body, Post } from "@nestjs/common";
+import { Controller, Body, Post, Request } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import * as bcrypt from "bcrypt";
 
@@ -20,5 +20,10 @@ export class UsersController {
       userId: result.id,
       userName: result.username,
     };
+  }
+
+  @Post("/login")
+  login(@Request() req): any {
+    return { User: req.user, msg: "User logged in successfully" };
   }
 }
