@@ -3,11 +3,13 @@ import { UsersService } from "./users.service";
 import { UsersController } from "./users.controller";
 import { MongooseModule } from "@nestjs/mongoose";
 import { UserSchema } from "./users.model";
+import { PassportModule } from "@nestjs/passport";
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: "user", schema: UserSchema }]),
     MongooseModule.forRoot("mongodb://localhost:27017/mvcnest"),
+    PassportModule.register({ session: true }),
   ],
   providers: [UsersService],
   controllers: [UsersController],
