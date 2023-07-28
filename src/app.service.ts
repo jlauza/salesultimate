@@ -1,8 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export class AppService {
-  getIndex(): string {
-    return 'You are on the index page!';
+  headline(): any {
+    return "Welcome to uDance!";
+  }
+
+  subHeadline(): any {
+    return "This is sub-headline.";
   }
 }
