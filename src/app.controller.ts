@@ -3,11 +3,14 @@ import { AppService } from "./app.service";
 
 @Controller()
 export class AppController {
-  constructor(private appService: AppService) {}
+  constructor(private readonly appService: AppService) {}
 
   @Get()
   @Render("index")
-  root() {
-    return { message: this.appService.getIndex() };
+  headline(): any {
+    return {
+      headline: this.appService.headline(),
+      subHeadline: this.appService.subHeadline(),
+    };
   }
 }

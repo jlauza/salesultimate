@@ -6,6 +6,7 @@ import { LoginController } from "./login/login.controller";
 import { AuthModule } from "./auth/auth.module";
 import { UsersModule } from "./users/users.module";
 import { ConfigModule } from "@nestjs/config";
+import { TemplateService } from "./templateservice";
 
 @Module({
   imports: [
@@ -16,6 +17,6 @@ import { ConfigModule } from "@nestjs/config";
     UsersModule,
   ],
   controllers: [AppController, LoginController],
-  providers: [AppService, LoginService],
+  providers: [AppService, LoginService, TemplateService],
 })
 export class AppModule {}
