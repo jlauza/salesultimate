@@ -1,6 +1,8 @@
 version: "3"
 services:
-  app:
+  nestplayground-app:
+    image: nestplayground-app
+    container_name: nestplayground-app
     build: .
     ports:
       - 3000:3000
@@ -9,7 +11,25 @@ services:
       - /app/node_modules
     command: ["npm", "run", "dev"]
 
-  db:
-    image: mongo
+  mongodb:
+    image: mongod
+    container_name: nestplayground-mongodb
     ports:
       - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+  nginx:
+    container_name: nestplayground-nginx
+    build:
+      context: .
+      dockerfile: Dockerfile.nginx
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "8080:80"
+    depends_on:
+      - nestplayground-app
+
+volumes:
+  mongodb_data:
