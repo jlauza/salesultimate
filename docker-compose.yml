@@ -1,8 +1,8 @@
 version: "3"
 services:
-  nestplayground-app:
-    image: nestplayground-app
-    container_name: nestplayground-app
+  app:
+    image: app
+    container_name: nestplayground
     build: .
     ports:
       - 3000:3000
@@ -11,8 +11,8 @@ services:
       - /app/node_modules
     command: ["npm", "run", "dev"]
 
-  mongodb:
-    image: mongod
+  mongo:
+    image: mongo
     container_name: nestplayground-mongodb
     ports:
       - "27017:27017"
