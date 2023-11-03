@@ -1,15 +1,18 @@
 version: "3"
 services:
   app:
-    image: app
     container_name: nestplayground
-    build: .
-    ports:
-      - 3000:3000
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - .:/app
       - /app/node_modules
-    command: ["npm", "run", "dev"]
+    ports:
+      - "8000:8000"
+    environment:
+      - CHOKIDAR_USEPOLLING=true # This is to ensure file changes are picked up in WSL2
+    # restart: always # Ensures the container auto-restarts if it exits    
 
   mongo:
     image: mongo
