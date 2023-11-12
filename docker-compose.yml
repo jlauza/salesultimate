@@ -1,16 +1,18 @@
 version: "3"
 services:
-  app:
-    container_name: nestplayground
-    build: .
-    volumes:
-      - .:/app
-      - /app/node_modules
-    ports:
-      - "3000:3000"
-    environment:
-      - CHOKIDAR_USEPOLLING=true # This is to ensure file changes are picked up in WSL2
-    # restart: always # Ensures the container auto-restarts if it exits    
+  # app:
+  #   container_name: nestplayground
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - .:/app
+  #     - /app/node_modules
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - CHOKIDAR_USEPOLLING=true # This is to ensure file changes are picked up in WSL2
+  #   restart: always # Ensures the container auto-restarts if it exits    
 
   mongo:
     image: mongo
@@ -20,17 +22,17 @@ services:
     volumes:
       - mongodb_data:/data/db
 
-  nginx:
-    container_name: nestplayground-nginx
-    build:
-      context: .
-      dockerfile: Dockerfile.nginx
-    volumes:
-      - .:/var/www/html
-    ports:
-      - "8080:80"
-    depends_on:
-      - app
+  # nginx:
+  #   container_name: nestplayground-nginx
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.nginx
+  #   volumes:
+  #     - .:/var/www/html
+  #   ports:
+  #     - "8080:80"
+  #   depends_on:
+  #     - app
 
 volumes:
   mongodb_data:
