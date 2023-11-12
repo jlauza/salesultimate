@@ -3,10 +3,10 @@ import { Injectable } from "@nestjs/common";
 @Injectable()
 export class AppService {
   headline(): any {
-    return "Welcome to uDance!";
+    return "Welcome to NestJS Playground!";
   }
 
   subHeadline(): any {
-    return "This is sub-headline.";
+    return "Placeholder sub-headline.";
   }
 }
