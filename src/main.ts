@@ -21,8 +21,8 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
   const mongodbURI = configService.get<string>("MONGO_URI");
-  console.log(`MONGODB_URI is ${mongodbURI}`);
-  console.log(process.env.MONGO_URI);
+  // console.log(`MONGODB_URI is ${mongodbURI}`);
+  // console.log(process.env.MONGO_URI);
 
   await connectToDatabase();
 
