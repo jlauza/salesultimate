@@ -1,21 +1,14 @@
 import { Injectable } from "@nestjs/common";
 // Replace any with the actual user entity
-export type User = any;
+import { user, UserDocument } from "../schemas/users.schema";
+import { Model } from "mongoose";
+import { InjectModel } from "@nestjs/mongoose";
 
 @Injectable()
 export class UsersService {
-  private readonly users = [
-    {
-      userId: 1,
-      username: "jayson",
-      password: "changeme",
-      email: "jayson@maildrop.cc",
-    },
-  ];
+  constructor(@InjectModel(user.name) private userModel: Model<UserDocument>) {}
 
-  async findOne(username: string, password: string): Promise<User | undefined> {
-    return this.users.find(
-      (user) => user.username === username && user.password === password
-    );
+  public async create(user: UserDocument): Promise<UserDocument> {
+    return this.userModel.create(user);
   }
 }
