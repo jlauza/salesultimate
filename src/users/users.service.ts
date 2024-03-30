@@ -11,4 +11,16 @@ export class UsersService {
   public async create(user: UserDocument): Promise<UserDocument> {
     return this.userModel.create(user);
   }
+
+  public async findAll(): Promise<UserDocument[]> {
+    return this.userModel.find().exec();
+  }
+
+  public async findOne(id: string): Promise<UserDocument> {
+    return this.userModel.findById(id).exec();
+  }
+
+  public async remove(id: string): Promise<UserDocument> {
+    return this.userModel.findByIdAndRemove(id).exec();
+  }
 }
